@@ -36,16 +36,17 @@ const limiter = rateLimit({
 // Apply the rate limiting
 app.use(limiter);
 
-app.use(express.json({ limit: "1mb" })); // set how big of a payload
-app.use(express.urlencoded({ limit: "1mb", extended: true })); // limit url request size / allow parse nesting
-app.use((_req, res, next) => {
-  res.header({
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-    "Access-Control-Allow-Headers": "Content-Type",
-  });
-  next(); // move to the next middleware
-});
-app.disable("x-powered-by"); // don't show express technology in response header
+app.use(express.json());
+// app.use(express.json({ limit: "1mb" })); // set how big of a payload
+// app.use(express.urlencoded({ limit: "1mb", extended: true })); // limit url request size / allow parse nesting
+// app.use((_req, res, next) => {
+//   res.header({
+//     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+//     "Access-Control-Allow-Headers": "Content-Type",
+//   });
+//   next(); // move to the next middleware
+// });
+// app.disable("x-powered-by"); // don't show express technology in response header
 
 clearAndInsertData();
 
